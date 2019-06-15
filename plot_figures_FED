@@ -1,0 +1,217 @@
+###################################################################################################
+# Programmer: Camilo Marchesini
+# You can find a very useful set of commands to retrieve data from FRED further down this script
+####################################################################################################
+
+######################
+# Library 
+library(tidyverse) # many packages bundled into one
+library(readxl) # read xl table
+library(zoo) # zoo contains the function as.yearqtr
+library(purrr) # for map_dfr
+library(lemon) # Better legend in ggplot2
+library(gridExtra) # Arrange multiple ggplot graphs
+# Use this package 
+# install.packages("fredr")
+library(fredr) # Retrive data from FRED
+# install.packages("extrafont")
+library(extrafont)
+# link www.fontsquirrel.com/fonts/latin-modern-roman
+library(xts) # treats time series objects
+#devtools::install_github("JustinMShea/neverhpfilter")
+library(neverhpfilter)  # implements hamilton filter
+######################
+
+# For documentation on how to use library(fredr), visit http://sboysel.github.io/fredr/articles/fredr.html and follow
+# To request the API, visit https://research.stlouisfed.org/docs/api/api_key.html
+
+# fredr_set_key() - Set the required FRED API key for the session.
+# fredr() or fredr_series_observations() - Fetch a FRED series.
+# fredr_series_search_text() - Search for a FRED series by text.
+# fredr_request() - Send a general request to the FRED API.
+
+####################################################  IMPORTANT !!!!!!!!!!!!!!!!!!!!! #####################################################
+# Always run at the beginning of each session: this is the API key provided by the FRED
+fredr_set_key("yourAPIkey")
+############################################################################################################################################
+
+# EXAMPLE DOWNLOAD:
+# Leverage the native features of the FRED API by passing additional parameters:
+fredr_series_observations(
+  series_id = "UNRATE",
+  observation_start = as.Date("1990-01-01"),
+  frequency = "q",
+  units = "chg"
+)
+
+# It is relatively straightforward to convert tibbles returned by fredr into other time series objects.
+# For example,
+
+# use library(xts)
+gnpca <- fredr(series_id = "GNPCA", units = "log") %>%
+  mutate(value = value - lag(value)) %>%
+  filter(!is.na(value))
+
+# View FRED API documentation and browse
+fredr_docs(endpoint = "series/observations")
+# To go to the parameter section 
+fredr_docs(endpoint = "category/related_tags", params = TRUE)
+
+
+######################################################### START PLOTS ################################################################
+# Set working directory
+setwd("~/Desktop/yourdirectory")
+# Clear workspace
+rm(list=ls())
+
+########################################
+# Figure 1
+#######################################
+###########   IMPORTANT !!!!!!!!!!!!!!!!!!!!!
+# Always run at the beginning of each session: this is the API key provided by the FRED
+fredr_set_key("yourAPIkey")
+
+# Real Output
+gdp <- fredr_series_observations( 
+  series_id = "GDPC1",
+  observation_start = as.Date("1985-01-01"),
+  observation_end = as.Date("2018-09-01"),
+  frequency = "q",
+  units = "lin"
+)  
+# Make quarterly data as YYYYQ
+gdp  <- transform(gdp, date = as.yearqtr(date))
+
+# Nominal Output
+ngdp <- fredr_series_observations(  
+  series_id = "GDP",
+  observation_start = as.Date("1985-01-01"),
+  observation_end = as.Date("2018-09-01"),
+  frequency = "q",
+  units = "lin"
+)  
+# Make quarterly data as YYYYQ
+ngdp  <- transform(ngdp, date = as.yearqtr(date))
+
+# Real potential output
+potgdp <- fredr_series_observations(   
+  series_id = "GDPPOT",
+  observation_start = as.Date("1985-01-01"),
+  observation_end = as.Date("2018-09-01"),
+  frequency = "q",
+  units = "lin"
+)
+# Make quarterly data as YYYYQ
+potgdp  <- transform(potgdp, date = as.yearqtr(date))
+
+# Total Credit to Private Non-Financial Sector, Adjusted for Breaks, for United States
+private <- fredr_series_observations(   
+  series_id = "CRDQUSAPABIS",
+  observation_start = as.Date("1985-01-01"),
+  observation_end = as.Date("2018-09-01"),
+  frequency = "q",
+  units = "lin"
+)
+# Make quarterly data as YYYYQ
+private  <- transform(private, date = as.yearqtr(date))
+
+# Compute real output gap
+gap <- (gdp[,3]-potgdp[,3]) %>% as.data.frame()
+gap$series_id <- rep("GDP_GAP", nrow(gap))
+colnames(gap) <- c("value","series_id")
+# Add date column
+gap$date <- gdp[,1]
+gap$value <- gap$value*0.01
+
+# Applying Hamilton filter to compute credit gap
+creditratio <- private[,3]/ngdp[,3] %>% as.data.frame() %>% 
+  ts(start = c(1985, 1), frequency = 4)
+dates <- seq(as.Date("1985-01-01"), length=135, by="quarters")
+creditratio <- xts(x=creditratio, order.by=dates)
+# Quarterly data (h)orizon=8, lags (p) = 4, Hamilton (2018)
+credit_filter <- yth_filter(creditratio, h = 8, p = 4)
+# Extract trend
+credit_trend <- credit_filter[,2]
+creditgap <- (creditratio - credit_trend)
+colnames(creditgap) <- c("gap")
+creditgap <- as.data.frame(creditgap)
+creditgap$series_id <- rep("CRED_GAP", nrow(creditgap))
+colnames(creditgap) <- c("value","series_id") 
+creditgap$date <- gdp[,1]
+creditgap$value <- creditgap$value*100
+# The credit gap ready to be plotted
+
+# Real House Prices  https://data.oecd.org/price/housing-prices.htm
+hprices <-read.csv("DP_LIVE_28032019124727985.csv", header = T)
+# Remove - from variable time and replace it with space
+hprices$TIME <- sub('-'," ", hprices$TIME)
+hprices  <- transform(hprices, date = as.yearqtr(TIME))
+hprices <- select(hprices, c(date,INDICATOR,Value))
+colnames(hprices) <- c("date","series_id","value")
+hprices$series_id <- as.character(hprices$series_id)
+hprices$value <- as.numeric(hprices$value)
+
+# Applying Hamilton filter to compute real house price gap
+house <- hprices$value %>% as.data.frame() %>% 
+  ts(start = c(1985, 1), frequency = 4)
+dates <- seq(as.Date("1985-01-01"), length=135, by="quarters")
+house <- xts(x=house, order.by=dates)
+house_filter <- yth_filter(house, h = 8, p = 4)
+# Extract trend
+house_trend <- house_filter[,2]
+housegap <- (house - house_trend)
+colnames(housegap) <- c("gap")
+housegap <- as.data.frame(housegap)
+housegap$series_id <- rep("HOUSE_GAP", nrow(housegap))
+colnames(housegap) <- c("value","series_id") 
+housegap$date <- gdp[,1]
+housegap$value <- housegap$value
+# The house price gap ready to be plotted
+
+datafed <- rbind(creditgap,housegap,gap)
+mycolors <- c("GDP_GAP"="orchid2","CRED_GAP"="deepskyblue2","HOUSE_GAP"="darkred")
+
+figure_1 <- ggplot(data=datafed, mapping = aes(x = date, y = value, color = series_id, na.rm = T)) + 
+  # Shade recession period: 1990Q3 - 1991Q1, Source:NBER
+  geom_rect(xmin =  datafed$date[23], ymin = -Inf,   
+            xmax =  datafed$date[25], ymax = Inf,
+            fill = "gray93", colour = "white", alpha = 0.2) + 
+  # Shade recession period: 2001Q1 - 2001Q4, Source:NBER
+  geom_rect(xmin =  datafed$date[65], ymin = -Inf,   
+            xmax =  datafed$date[68], ymax = Inf,
+            fill = "gray93", colour = "white", alpha = 0.2) +  #fill regulates the filling, colour regulates the borders
+  # Shade recession period: 2007Q4 - 2009Q2, Source:NBER
+  geom_rect(xmin =  datafed$date[92], ymin = -Inf,   
+            xmax =  datafed$date[98], ymax = Inf,
+            fill = "gray93", colour = "white", alpha = 0.2) + # Invisible boarders with colour = "white"
+  geom_bar(data=filter(datafed, series_id == "GDP_GAP"), stat="identity", colour = "orchid2") +
+  geom_path(size=1.2) +  # Make lines just a bit thicker, but make lines more transparent
+  geom_hline(yintercept=0, 
+             color = "black", size=0.4) +
+  scale_y_continuous(name="Gap",breaks=c(seq(-18,12,3))) +
+  scale_color_manual(name=NULL,values = mycolors, 
+                     labels=c("Credit-to-GDP Gap",
+                              "Real Output Gap",
+                              "Real House Price Gap")) +
+  scale_x_yearqtr(format = "%Y Q%q", breaks = seq(from = min(datafed$date), to = max(datafed$date), by = 1.25)) + 
+  labs(x="", # No x-title
+       color="") +
+  theme_bw() +
+  theme(text=element_text(family = "LM Roman Demi 10", face = "bold",size = 18),
+        axis.text.x = element_text(angle=45, vjust = 0.5),
+        panel.grid.major.y = element_line(linetype=3),
+        panel.grid.minor.y = element_line(linetype=3),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.title.y.right = element_text(color = mycolors["CORSREACBS"]), # Colour axis
+        axis.text.y.right = element_text(color = mycolors["CORSREACBS"]),
+        legend.background = element_rect(fill ="transparent"), # get rid of legend bg
+        legend.key = element_rect(fill = "transparent", colour = NA), # get rid of key legend fill, and of the surrounding
+        legend.title=element_text(color="black"),
+        plot.caption = element_text(hjust = 0) # Left-align caption/notes
+  ) 
+reposition_legend(figure_1, 'top left')
+# Export Figure to pdf
+dev.copy(png,"Figure1.png", width=1180, height=600)
+dev.off()
+
