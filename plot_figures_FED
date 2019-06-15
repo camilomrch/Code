@@ -203,8 +203,6 @@ figure_1 <- ggplot(data=datafed, mapping = aes(x = date, y = value, color = seri
         panel.grid.minor.y = element_line(linetype=3),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
-        axis.title.y.right = element_text(color = mycolors["CORSREACBS"]), # Colour axis
-        axis.text.y.right = element_text(color = mycolors["CORSREACBS"]),
         legend.background = element_rect(fill ="transparent"), # get rid of legend bg
         legend.key = element_rect(fill = "transparent", colour = NA), # get rid of key legend fill, and of the surrounding
         legend.title=element_text(color="black"),
