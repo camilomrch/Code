@@ -1,13 +1,3 @@
-
-<style>
-pre {
-  white-space: pre !important;
-  overflow-y: scroll !important;
-  overflow-x: scroll !important;
-  height: 15vh !important;
-}
-</style>
-
 # <span style="color:blue">Welcome to my GitHub repository\!</span>
 
 ### My name is <span style="color:blue">Camilo Marchesini</span>.
