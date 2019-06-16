@@ -114,4 +114,5 @@ mat_loop_MP(:,n)=[PHIPI_grid(ii);PHIY_grid(jj);PHIC_grid(kk);variance.pi(ii,jj,k
   savefig('efficientfrontier');
   print('efficientfrontier','-dpng','-r300');
   
+  
   % End example.
