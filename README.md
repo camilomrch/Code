@@ -10,10 +10,11 @@
   - <sub>Function *eff\_frontier.m* was written by [Daniele
     Vettorel](http://vettorel.mit.edu/) and me. It computes the
     efficient frontier, also called Taylor (volatility) frontier, of
-    monetary policy. Its flexibility allows it to be applied to any
-    monetary DSGE model and shows the trade-offs available to the
-    central bank, assuming the central bank implements a Taylor
-    rule.</sub>
+    monetary policy. It shows the trade-offs available to the
+    central bank subject to the constraints imposed by the competitive equilibrium in the economy,
+    under the assumption that the central bank implements a Taylor
+    rule. Its flexibility allows it to be applied to any
+    monetary DSGE model.</sub>
 
   - <sub>File *eff\_frontier\_example.m* provides a minimal working
     example to illustrate the power of *eff\_frontier.m*. The use of a
