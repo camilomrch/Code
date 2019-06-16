@@ -1,0 +1,51 @@
+
+<style>
+pre {
+  white-space: pre !important;
+  overflow-y: scroll !important;
+  overflow-x: scroll !important;
+  height: 15vh !important;
+}
+</style>
+
+# <span style="color:blue">Welcome to my GitHub repository\!</span>
+
+### My name is <span style="color:blue">Camilo Marchesini</span>.
+
+### In this repository you can find a selection of my original codes\! Unless otherwise stated, all codes were written exclusively by me.
+
+## Efficient\_frontier
+
+  - <sub>Function *eff\_frontier.m* was written by [Daniele
+    Vettorel](http://vettorel.mit.edu/) and me. It computes the
+    efficient frontier, also called Taylor (volatility) frontier, of
+    monetary policy. Its flexibility allows it to be applied to any
+    monetary DSGE model and shows the trade-offs available to the
+    central bank, assuming the central bank implements a Taylor
+    rule.</sub>
+
+  - <sub>File *eff\_frontier\_example.m* provides a minimal working
+    example to illustrate the power of *eff\_frontier.m*. The use of a
+    three-mandate Taylor rule is illustrated.</sub>
+
+## Time\_series
+
+  - <sub>R script *plot\_TS.R* provides a powerful visualisation of the
+    main financial and macroeconomic developments in the recent history
+    of the United States. \#\#\#First, if you are in the preliminary
+    phase of your paper and wish to get an idea of some economic
+    dynamics, you first want to plot them well\! Second, many great
+    papers, such as [Jermann and Quadrini
+    (2012)](https://www.jstor.org/stable/41408774?seq=1#metadata_info_tab_contents)
+    and [Justiniano, Primiceri, and Tambalotti
+    (2015)](https://econpapers.repec.org/article/redissued/14-24.htm)
+    start by capturing the attention of the reader with one or more
+    illustrations of the dynamics underlying their research question,
+    and then move to illustrate the model with which they attempt to
+    replicate those features of the data. That is why you always need
+    great data visualisations at the beginning of your paper\! Check the
+    code out and plot\!</sub>
+
+  - <sub>Function *make\_monthly* in *plot\_TS.R* formats your dataset
+    to deliver a beautiful graphic outcome on the x-axis when data is at
+    monthly frequency.</sub>
