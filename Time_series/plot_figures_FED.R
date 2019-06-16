@@ -73,7 +73,6 @@ fredr_docs(endpoint = "series/observations")
 # To go to the parameter section 
 fredr_docs(endpoint = "category/related_tags", params = TRUE)
 
-
 ######################################################### START PLOTS ################################################################
 # Set working directory
 setwd("~/Desktop/yourdirectory")
@@ -228,7 +227,6 @@ reposition_legend(figure_1, 'top left')
 dev.copy(png,"Figure1.png", width=1180, height=600)
 # Take picture off the console screen
 dev.off()
-
 
 ###########################################################################################################################
 # Figure 2:  Chicago Fed National Financial Conditions Subindexes and Charge-off rate on Loans Secured by real Estate
