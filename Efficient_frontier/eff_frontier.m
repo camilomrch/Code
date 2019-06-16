@@ -38,8 +38,7 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
 % - themarkerfacecolor is the marker face color of choice, e.g. 'r'
 % - displayname is 'DisplayName'
 % - thedisplayname is the displayname of choice, e.g. 'Taylor Rule'.
-     
-   
+        
 % Copyright (C) 2019 Camilo Marchesini and Daniele Vettorel.
 %
 % This is free software: you can redistribute it and/or modify
