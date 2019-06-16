@@ -1,4 +1,3 @@
-
 % Minimal working example to compute efficient frontier of monetary policy
 % with three policy coefficients.
 % Ascertain that file eff_frontier.m is located in your current working
