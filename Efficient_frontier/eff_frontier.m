@@ -92,3 +92,4 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
          % Plot.
          plot(xnew,min(Y,[],2),marker,markerfacecolor,themarkerfacecolor,displayname,thedisplayname)
 end % function end.
+
