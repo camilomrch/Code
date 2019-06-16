@@ -13,8 +13,8 @@
     monetary policy. It shows the trade-offs available to the
     central bank subject to the constraints imposed by the competitive equilibrium in the economy,
     under the assumption that the central bank implements a Taylor
-    rule. Its flexibility allows it to be applied to any
-    monetary DSGE model.</sub>
+    rule. *Its flexibility allows it to be applied to any
+    monetary DSGE model*.</sub>
 
   - <sub>File *eff\_frontier\_example.m* provides a minimal working
     example to illustrate the power of *eff\_frontier.m*. The use of a
@@ -24,7 +24,7 @@
 
   - <sub>R script *plot\_TS.R* provides a powerful visualisation of the
     main financial and macroeconomic developments in the recent history
-    of the United States. \#\#\#First, if you are in the preliminary
+    of the United States. First, if you are in the preliminary
     phase of your paper and wish to get an idea of some economic
     dynamics, you first want to plot them well\! Second, many great
     papers, such as [Jermann and Quadrini
