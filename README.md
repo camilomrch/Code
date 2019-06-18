@@ -34,7 +34,7 @@
     many great papers, such as [Jermann and Quadrini
     (2012)](https://www.jstor.org/stable/41408774?seq=1#metadata_info_tab_contents)
     and [Justiniano, Primiceri, and Tambalotti
-    (2015)](https://econpapers.repec.org/article/redissued/14-24.htm)
+    (2015)](https://econpapers.repec.org/article/redissued/14-24.htm) to mention but two,
     start by capturing the attention of the reader with one or more
     illustrations of the dynamics underlying their research question,
     and then move to illustrate the model with which they attempt to
