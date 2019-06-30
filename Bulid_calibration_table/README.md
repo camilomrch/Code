@@ -11,4 +11,4 @@
   2. Adapt **build_calibration_table.m** accordingly, adding and removing blocks of model parameters;
   3. Run **build_calibration_table.m**...
   
- ### Et voil\'{a}\! 
+ ### Et voilà! 
