@@ -8,7 +8,7 @@
   - It takes just **3** easy steps:
   
   1. Compile file **savepar.m** with parameter values and steady-state targets of your liking;
-  2. Adapt **build_calibration_table.m** accordingly, adding and removing blocks of model parameters;
+  2. Adapt **build_calibration_table.m** accordingly, by adding and removing lines, adding references, etc...;
   3. Run **build_calibration_table.m**...
   
  ### Et voilà! 
