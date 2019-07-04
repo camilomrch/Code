@@ -72,7 +72,7 @@ fprintf(fidTeX,'\\midrule \\midrule \n');
 % Steady-state targets.
 fprintf(fidTeX,'\\multicolumn{4}{l}{Main steady-state targets}\\\\ \\midrule \n');
 fprintf(fidTeX,'X & %1.3f & Desired price mark-up ($\\%$) &\\\\ \n', targ.X);
-fprintf(fidTeX,'$\\pi$ & %1.3f & Gross inflation rate ($\\%$) &\\\\ \n', targ.pi);
+fprintf(fidTeX,'$\\pi$ & %1.3f & Gross inflation rate ($\\%$) &\\\\ \n', targ.pi_ss);
 % Outro.
 fprintf(fidTeX,'\\end{tabular} \n');
 fprintf(fidTeX,'\\begin{tablenotes} \n');

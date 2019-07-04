@@ -88,7 +88,7 @@ end
 % Next iteration.    
 n=n+1;
 % Store.
-mat_loop_MP(:,n)=[PHIPI_grid(ii);PHIY_grid(jj);PHIC_grid(kk);variance.pi(ii,jj,kk);variance.y(ii,jj,kk)];
+mat_loop_MP(:,n)=[PHIPI_grid(ii);PHIY_grid(jj);PHIC_grid(kk);sqrt(variance.pi(ii,jj,kk));sqrt(variance.y(ii,jj,kk))];
       end
     end
   end % End loop.

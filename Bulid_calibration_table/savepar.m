@@ -38,15 +38,15 @@ par.TAU      =   TAU;
 %%
 % Set steady-targets 
 X   =   11;                % Desired mark-up
-pi  =   1;                 % Inflation target
+pi_ss  =   1;              % Inflation target
 % . =   ;                  % and so on
 % . =   ;                  % and so forth
 
 % Feed them into the structure -targ
 targ.X    =   X;
-targ.pi   =   pi;
-% .       =     ;       % and so on
-% .       =     ;       % and so forth
+targ.pi_ss   =   pi_ss;
+% .       =     ;          % and so on
+% .       =     ;          % and so forth
 
 
 % Save both structures into a .mat file
