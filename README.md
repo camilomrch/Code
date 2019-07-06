@@ -1,11 +1,13 @@
 
-# <span style="color:blue">Welcome to my GitHub repository\!</span>
+# <span style="color:blue">Welcome\!</span>
 
-### My name is  [Camilo Marchesini](https://camilomrch.github.io/). For more information about myself, visit 
+### My name is  [Camilo Marchesini](https://camilomrch.github.io/). My research focuses on Monetary Economics and Macroeconometrics.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-## In this repository you can find a selection of my original codes\! Unless otherwise stated, all codes were written exclusively by me.
+## In this repository you can find a selection of my code and programs\! They are mostly related to DSGE and time series modelling, and can be useful to any researcher in the field\! 
+Unless otherwise stated, all code was written exclusively by me.
 
-### You will find descriptions of the codes in each folder.
+### You will find descriptions of the code in each folder.
 
 
 
