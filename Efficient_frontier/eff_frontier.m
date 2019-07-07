@@ -1,9 +1,4 @@
-function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,themarkerfacecolor,displayname,thedisplayname)
-
-% This function was written by Camilo Marchesini and Daniele Vettorel
-% (http://vettorel.mit.edu/).
-
-% MATLAB_R2019a and subsequent distributions. Backward compatibility untested.
+function eff_frontier(mat,A,B,var_grid,lbound,ubound,varargin)
 
 % Use this function to compute the efficiency frontier of monetary
 % policy for a pair of variances (or standard deviations).
@@ -33,12 +28,13 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
 % - lbound identifies the lower bound on the x axis from the
 % interpolation should start
 % - upbound the upperbound
-% - marker is a marker symbol to identify the minima, e.g. 'rp'
-% - markerfacecolor is 'MarkerFaceColor'
-% - themarkerfacecolor is the marker face color of choice, e.g. 'r'
-% - displayname is 'DisplayName'
-% - thedisplayname is the displayname of choice, e.g. 'Taylor Rule'.
-        
+
+
+% This implementation was written by Camilo Marchesini and Daniele Vettorel
+% (http://vettorel.mit.edu/).
+
+% MATLAB_R2019a and subsequent distributions. Backward compatibility untested.
+       
 % MIT License
 % 
 % Copyright (c) 2019 Camilo Marchesini
@@ -62,8 +58,8 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
 % SOFTWARE.
   
      
-    % function start.
-     
+    %% function start.
+    
     % Make sure the length of the matrix is divisible by the length of the grid.
     mat_length = length(mat);
     grid_length = length(var_grid);
@@ -79,7 +75,7 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
         % Calculate start and end index.
         start_index = grid_length * (current_iter - 1) + 1;
         end_index = grid_length * current_iter;
-        % Vectors for plot
+        % Vectors for plot.
         x=mat(A, start_index:end_index);
         y=mat(B, start_index:end_index);
         % Create new interpolation range on x-axis.
@@ -97,6 +93,6 @@ function eff_frontier(mat,A,B,var_grid,lbound,ubound,marker,markerfacecolor,them
         current_iter = current_iter + 1;
     end
          % Plot.
-         plot(xnew,min(Y,[],2),marker,markerfacecolor,themarkerfacecolor,displayname,thedisplayname)
+         plot(xnew,min(Y,[],2),varargin{:})
 end % function end.
 
