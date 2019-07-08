@@ -165,7 +165,7 @@ kable(jo.tests, digits = 2, format = "latex",
 ############################
 # Restricted VECM
 ############################
-# I conduct inference on the coefficients of a restricted VECM
+# I conduct inference on the coefficients of a restricted VECM; H0: cointegration
 # Fit the VECM
 jotest.trVECM1 <- ca.jo(swe, type="trace", K=4, ecdet="none", spec="longrun")
 # Restricting matrix (linear restrictions on beta)
