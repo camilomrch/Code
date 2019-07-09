@@ -9,6 +9,6 @@
   
   1. Compile file **savepar.m** with parameter values and steady-state targets of your liking;
   2. Adapt **build_calibration_table.m** accordingly, by adding and removing lines, adding references, etc...;
-  3. Run **build_calibration_table.m**...
+  3. Run **build_calibration_table.m** and **\input{Calibration_table}** in your paper...
   
  ### Et voilà! 
