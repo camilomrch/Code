@@ -86,6 +86,8 @@ fredr_docs(endpoint = "category/related_tags", params = TRUE)
 setwd("~/Desktop/yourdirectory")
 # Clear workspace
 rm(list=ls())
+# Clear screen
+cat("\014")  
 ####################################################################################################
 # Figure 1: Cyclical Properties of Real Aggregate Asset Prices and Credit to Non-Financial Sector
 ####################################################################################################
