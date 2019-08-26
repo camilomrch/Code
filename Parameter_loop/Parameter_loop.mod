@@ -71,7 +71,11 @@ options_.TeX=0;
             fprintf('Variance of inflation: %1.3f \n',variance.pi(ii,jj));
             fprintf('---------------------------- \n');
         else 
-            fprintf('Here there is an error with this combination of paramters!\n');
+            fprintf('Here there is an error with this combination of paramters: \n',);
+            fprintf('---------------------------- \n');
+            fprintf('Calvo probability: %1.3f \n',theta_grid(ii));
+            fprintf('Indexation parameter: %1.3f \n',chi_grid(ii));
+            fprintf('---------------------------- \n');
             variance.pi(ii,jj)=NaN;
         end
       end

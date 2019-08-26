@@ -41,9 +41,9 @@ y_pos=strmatch('y',M_.endo_names,'exact');
 % Optional: names of coefficients.
 names_MP = {'PHIPI','PHIY','PHIC'};
 % Grids.
-PHIPI_grid = 1.1:0.05:4; % Coefficient on inflation in Taylor Rule.
-PHIY_grid = 0:0.05:1; % Coefficient on output variable in Taylor Rule.
-PHIC_grid = 0:0.05:1; % Coefficient on financial variable in Taylor Rule.
+PHIPI_grid = 1.1:0.05:4; % Feedback coefficient on inflation in Taylor Rule.
+PHIY_grid = 0:0.05:1; % Feedback coefficient on output variable in Taylor Rule.
+PHIC_grid = 0:0.05:1; % Feedback coefficient on financial variable in Taylor Rule.
 % Pre-allocate.
 variance.pi=zeros(length(PHIPI_grid),length(PHIY_grid),length(PHIC_grid));
 variance.y=zeros(length(PHIPI_grid),length(PHIY_grid),length(PHIC_grid));
@@ -86,7 +86,12 @@ end
         variance.pi(ii,jj,kk)=oo_.var(pi_pos,pi_pos);
         variance.y(ii,jj,kk)=oo_.var(y_pos,y_pos);
     else 
-        fprintf('Here there is an error with this combination of paramters!\n');
+        fprintf('Here there is an error with this combination of paramters:\n');
+        fprintf('---------------------------- \n');
+        fprintf('Feedback coefficient on inflation in Taylor Rule: %1.3f \n',PHIPI_grid(ii));
+        fprintf('Feedback coefficient on output variable in Taylor Rule: %1.3f \n',PHIY_grid(jj));
+        fprintf('Feedback coefficient on financial variable in Taylor Rule: %1.3f \n',PHIC_grid(kk));
+        fprintf('---------------------------- \n');
         variance.pi(ii,jj,kk)=NaN;
         variance.y(ii,jj,kk)=NaN;
     end
