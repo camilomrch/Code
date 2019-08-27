@@ -33,7 +33,7 @@
 %... (body of your .mod file)
 %... (add the following lines to the bottom of your file)
 
-stoch_simul(order=2,periods=0,irf=0, replic=1000); % or other options, as you see fit.
+stoch_simul(order=2,irf=0, replic=1000); % or other options, as you see fit.
 %make sure Dynare does not print out unnecessary output during runs.
 options_.nomoments=0;
 options_.nofunctions=1;
@@ -71,7 +71,7 @@ options_.TeX=0;
             fprintf('Variance of inflation: %1.3f \n',variance.pi(ii,jj));
             fprintf('---------------------------- \n');
         else 
-            fprintf('Here there is an error with this combination of paramters: \n',);
+            fprintf('Here there is an error with this combination of paramters: \n');
             fprintf('---------------------------- \n');
             fprintf('Calvo probability: %1.3f \n',theta_grid(ii));
             fprintf('Indexation parameter: %1.3f \n',chi_grid(ii));

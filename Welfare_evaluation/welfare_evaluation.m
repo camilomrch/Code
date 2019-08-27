@@ -75,7 +75,7 @@
             % Remember that this formula is valid only with log utility.
             lambda(ii)=exp((1-BETA)*(mean.W(ii)-mean.W(benchmark_pos)))-1;    
          else 
-            fprintf('Here there is an error with this value of the parameter of interest: %1.3 \n',PARAMETER_grid(ii));
+            fprintf('Here there is an error with this value of the parameter of interest: %1.3f \n',PARAMETER_grid(ii));
             % assign NAN to problematic value.
             mean.W(ii)=NaN;
             lambda(ii)=NaN;  
