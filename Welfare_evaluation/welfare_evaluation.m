@@ -8,6 +8,10 @@
 % 3D-plots when the search spans bidimensional parameter space.
 
 
+% This implementation was written by Camilo Marchesini.
+
+% MATLAB_R2019a and subsequent distributions. Backward compatibility untested.
+
 
 % MIT License
 % 
