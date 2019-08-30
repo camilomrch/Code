@@ -5,7 +5,8 @@
 # This file offers an example on how to test for cointegration using a restricted VECM approach. 
 # Are the Swedish STIBOR and the 10-year Swedish government bonds cointegrated series? 
 # With the restricted VECM approach I use Johansen's procedure to test whether the spread between
-# the two is stationary by assuming cointegration by imposing rescritions on the coefficient of the VECM representation.
+# the two is stationary by assuming cointegration by imposing rescritions on the coefficient of the VECM representation and conducting 
+# inference on this restriction.
 
 # MIT License
 # 
@@ -39,8 +40,9 @@ setwd("yourworkingdirectory")
 library(forecast)
 library(ggplot2)
 library(tseries)
-library(urca)
+library(urca) # contains -ca.jo function
 library(graphics)
+library(kableExtra)
 library(MASS)
 library(strucchange)
 library(sandwich)
@@ -166,7 +168,7 @@ kable(jo.tests, digits = 2, format = "latex",
 # Restricted VECM
 ############################
 # I conduct inference on the coefficients of a restricted VECM; H0: cointegration
-# Fit the VECM
+# Fit the VECM (K=estimated number of lags in VAR in levels)
 jotest.trVECM1 <- ca.jo(swe, type="trace", K=4, ecdet="none", spec="longrun")
 # Restricting matrix (linear restrictions on beta)
 B1 <- matrix(c(1,-1), nrow = 2) 
@@ -184,5 +186,20 @@ kable(bigtest, digits = 2, format = "latex",
       booktabs=T) %>%
   group_rows("Trace test", 1, 1) %>%
   group_rows("Max. Eigenvalue test",2, 2) 
+
+
+# The IRFs of a VECM are produced by its cointegrated VAR representation, now that I entertain the hypothesis of cointegration 
+# I can impose cointegrating rank = 1 on the VAR system:
+# transform VEC to VAR with r = 1
+cointegrated_var <- vec2var(jotest.tr1, r = 1)
+# Obtain IRF
+irf_coi_var <- irf(cointegrated_var, n.ahead = 20, impulse = "SE.GVB.10Y", response = "STIBOR.1W",
+          ortho = FALSE, runs = 500)
+
+# Clearly, since this VAR model contains a unit root, the IRFs it produces are necessarily nonstationary and 
+# do not return to the steady-state and have infinite variance.
+
+# Plot
+plot(irf_coi_var)
 
 # End.
