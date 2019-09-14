@@ -69,7 +69,7 @@ var_plot = {'r','x','pi'};
 % cell array of labels
 var_label = char('Policy rate','Output gap','Inflation');
 % Scale
-scale = [1,1,1]; % Set variables you wish to annualise to 4, e.g. [1,1,4] if you want annualised inflation rate.
+scale = [1,1,4]; % Set variables you wish to annualise to 4, e.g. [1,1,4] if you want annualised inflation rate.
 
 % Check.
 if isfile('numSubplots.m')
@@ -90,17 +90,16 @@ hFig1 = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLin
 % Begin loop.
     for ii=1:length(var_plot)
         for kk=1:length(shock)
-            for ss=1:length(scale)
     subplot(nsubplots(1),nsubplots(2),ii)
     % Uncomment the two lines below if you are applying this code to a nonlinear
     % model.
     % hold on
     % plot(zeros(IRF_periods,1),'k--','HandleVisibility','off','LineWidth',1);
     % % to show steady-state level.
-    plot(L,[0 scale(ss)*eval(['yourmodel_irf.' var_plot{1,ii}, shock{1,kk}])],'-.','Color',amrose);	
+    plot(L,[0 scale(ii)*eval(['yourmodel_irf.' var_plot{1,ii}, shock{1,kk}])],'-.','Color',amrose);	
     title(deblank(var_label(ii,:)))
     axis tight;
-             end
+           
         end
     end
  % Loop end.
