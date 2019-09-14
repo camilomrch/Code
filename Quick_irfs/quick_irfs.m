@@ -89,9 +89,8 @@ hFig1 = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLin
 
 % Begin loop.
     for ii=1:length(var_plot)
-        for jj=1:length(var_label)
-          for kk=1:length(shock)
-             for ss=1:length(scale)
+        for kk=1:length(shock)
+            for ss=1:length(scale)
     subplot(nsubplots(1),nsubplots(2),ii)
     % Uncomment the two lines below if you are applying this code to a nonlinear
     % model.
@@ -99,11 +98,10 @@ hFig1 = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLin
     % plot(zeros(IRF_periods,1),'k--','HandleVisibility','off','LineWidth',1);
     % % to show steady-state level.
     plot(L,[0 scale(ss)*eval(['yourmodel_irf.' var_plot{1,ii}, shock{1,kk}])],'-.','Color',amrose);	
-    title(deblank(var_label(jj,:)))
+    title(deblank(var_label(ii,:)))
     axis tight;
              end
-          end
-       end
+        end
     end
  % Loop end.
    
