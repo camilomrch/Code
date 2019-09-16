@@ -32,14 +32,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % House-keeping.
 clear; close all; clc;
-% % Print info.
-% fprintf( ['*****************************************************************\n', ...
-%           'Dynare code to replicate:\n ', ...
-%           'Sims and Wu (2019) "The Four Equation New Keynesian Model",\n', ... 
-%           'NBER Working Paper Series 26067.\n',...
-%           '*****************************************************************\n',...
-%           'This implementation was written by Camilo Marchesini.\n',...
-%           '*****************************************************************\n'])
+% Print info.
+fprintf( ['*****************************************************************\n', ...
+          'Dynare code to replicate:\n ', ...
+          'Sims and Wu (2019) "The Four Equation New Keynesian Model",\n', ... 
+          'NBER Working Paper Series 26067.\n',...
+          '*****************************************************************\n',...
+          'This implementation was written by Camilo Marchesini.\n',...
+          '*****************************************************************\n'])
     
  %% Menu of available shocks. Select one.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,28 +69,130 @@ end
 
  switch Shockshow
     case {'QE shock (+)'}
+        
 clear; close all; clc;
-dynare yourmodel  -DQE_shock=1
+dynare Sims_Wu_2019  -DQE_shock=1
 shock = {'eps_qe'};
 shock_name={'QE shock (+)'}; 
+% Cell array of variables to plot.
+var_plot = {'r','x','pinf','a_theta','qe'};
+% cell array of labels
+var_label = char('Policy rate','Output gap','Inflation','Credit conditions','QE');
+scale = [4,1,4,1,4]; % Set variables you wish to annualise to 4.
+scaling_str = string(scale);
+var_label_str=string(var_label);
+scaling_matrix=[var_label_str';scaling_str];
+[row,column]=find(scaling_matrix=='4');
+names=cell(size(column,1),1);
+n=0;
+for jj=1:length(names)
+   n=n+1;
+   names{n,:}=scaling_matrix(1,column(jj));
+end
+names=string(names);
+% Inform about annualised variables.
+fprintf('Notice that variables:\n')
+for kk=1:length(names)
+fprintf('%s\n',names{kk,1})
+end
+fprintf('are expressed in annualised percent deviations from the steady state.\n')
+
+
     case {'Natural interest rate shock (-)'}
+        
 clear; close all; clc;
-dynare yourmodel  -DRF_shock=1
+dynare Sims_Wu_2019  -DRF_shock=1
 shock = {'eps_rf'};
 shock_name={'Natural interest rate shock (-)'};
+% Cell array of variables to plot.
+var_plot = {'r','x','pinf','a_rf'};
+% cell array of labels
+var_label = char('Policy rate','Output gap','Inflation','Natural rate');
+% Scale
+scale = [4,1,4,4]; % Set variables you wish to annualise to 4.
+scaling_str = string(scale);
+var_label_str=string(var_label);
+scaling_matrix=[var_label_str';scaling_str];
+[row,column]=find(scaling_matrix=='4');
+names=cell(size(column,1),1);
+n=0;
+for jj=1:length(names)
+   n=n+1;
+   names{n,:}=scaling_matrix(1,column(jj));
+end
+names=string(names);
+% Inform about annualised variables.
+fprintf('Notice that variables:\n')
+for kk=1:length(names)
+fprintf('%s\n',names{kk,1})
+end
+fprintf('are expressed in annualised percent deviations from the steady state.\n')
+
+
     case {'Credit shock (+)'}
+        
 clear; close all; clc;
-dynare yourmodel  -DTHETA_shock=1
+dynare Sims_Wu_2019  -DTHETA_shock=1
 shock = {'eps_theta'};
 shock_name={'Credit shock (+)'};
-    case {'Policy rate shock (+)'}
+% Cell array of variables to plot.
+var_plot = {'r','x','pinf','a_theta','qe'};
+% cell array of labels
+var_label = char('Policy rate','Output gap','Inflation','Credit conditions','QE');
+scale = [4,1,4,1,4]; % Set variables you wish to annualise to 4.
+scaling_str = string(scale);
+var_label_str=string(var_label);
+scaling_matrix=[var_label_str';scaling_str];
+[row,column]=find(scaling_matrix=='4');
+names=cell(size(column,1),1);
+n=0;
+for jj=1:length(names)
+   n=n+1;
+   names{n,:}=scaling_matrix(1,column(jj));
+end
+names=string(names);
+% Inform about annualised variables.
+fprintf('Notice that variables:\n')
+for kk=1:length(names)
+fprintf('%s\n',names{kk,1})
+end
+fprintf('are expressed in annualised percent deviations from the steady state.\n')
+
+
+
+    case {'Policy rate shock (-)'}
+        
 clear; close all; clc;
-dynare yourmodel  -DMP_shock=1
+dynare Sims_Wu_2019  -DMP_shock=1
 shock = {'eps_mp'};
-shock_name={'Policy rate shock (+)'};
- end
-      
-             
+shock_name={'Policy rate shock (-)'};
+% Cell array of variables to plot.
+var_plot = {'r','x','pinf','a_rf'};
+% cell array of labels
+var_label = char('Policy rate','Output gap','Inflation','Natural rate');
+% Scale
+scale = [4,1,4,4]; % Set variables you wish to annualise to 4.
+scaling_str = string(scale);
+var_label_str=string(var_label);
+scaling_matrix=[var_label_str';scaling_str];
+[row,column]=find(scaling_matrix=='4');
+names=cell(size(column,1),1);
+n=0;
+for jj=1:length(names)
+   n=n+1;
+   names{n,:}=scaling_matrix(1,column(jj));
+end
+names=string(names);
+% Inform about annualised variables.
+fprintf('Notice that variables:\n')
+for kk=1:length(names)
+fprintf('%s\n',names{kk,1})
+end
+fprintf('are expressed in annualised percent deviations from the steady state.\n')
+end  
+
+ 
+ 
 %% General plot options.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Size of plot window.
@@ -107,12 +209,6 @@ irf_plot1={'sims_wu_3NK.'};
 irf_plot2={'sims_wu_4NK.'};
 % Insert legend entries.
 legend_names={'3 Equation NK','4 Equation NK'};
-% Cell array of variables to plot.
-var_plot = {'r','x','pinf','a_rf'};
-% cell array of labels
-var_label = char('Policy rate','Output gap','Inflation','Natural rate');
-% Scale
-scale = [4,1,4,4]; % Set variables you wish to annualise to 4.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Load.
@@ -138,17 +234,16 @@ elseif  nvar_plot~=nscale
     er_msgbox=msgbox('Number of variables to plot, variable labels, and scale of the variables not all of the same size.');
 end
 
-% Check numSubplots.m is in working directory.
-if isfile('numSubplots.m')
-     nsubplots=numSubplots(nvar_plot);
-     FigShape = {nsubplots(1),nsubplots(2)};
-     lastplot = FigShape{1}*FigShape{2};
-else
-    er_mgebox = msgbox('Function file numSubplots.m is not in the working directory. Look for the file and move it to this directory to continue. If you do not have it you can download it at https://se.mathworks.com/matlabcentral/fileexchange/26310-numsubplots-neatly-arrange-subplots');
-end
+   % Prepare figure shape.
+   % Divide neatly into subplots.
+   nsubplots=numSubplots(nvar_plot);
+   % Assign.
+   FigShape = {nsubplots(1),nsubplots(2)};
+   % Prepare last subplot to show legend.
+   lastplot = FigShape{1}*FigShape{2};
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+% Begin figure.
 hFig = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLineLinewidth',2,'DefaultTextFontSize',12,'Name',shock_name{:});
 
 % Begin loop.
@@ -174,5 +269,62 @@ hFig = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLine
    
  % Set position.
  set(gcf,'position',goodposition);
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DO NOT EDIT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [p,n]=numSubplots(n)
+% function [p,n]=numSubplots(n)
+%
+% Purpose
+% Calculate how many rows and columns of sub-plots are needed to
+% neatly display n subplots. 
+%
+% Inputs
+% n - the desired number of subplots.     
+%  
+% Outputs
+% p - a vector length 2 defining the number of rows and number of
+%     columns required to show n plots.     
+% [ n - the current number of subplots. This output is used only by
+%       this function for a recursive call.]
+%
+%
+%
+% Example: neatly lay out 13 sub-plots
+% >> p=numSubplots(13)
+% p = 
+%     3   5
+% for i=1:13; subplot(p(1),p(2),i), pcolor(rand(10)), end 
+%
+%
+% Rob Campbell - January 2010
+   
+    
+while isprime(n) && n>4
+    n=n+1;
+end
+p=factor(n);
+if length(p)==1
+    p=[1,p];
+    return
+end
+while length(p)>2
+    if length(p)>=4
+        p(1)=p(1)*p(end-1);
+        p(2)=p(2)*p(end);
+        p(end-1:end)=[];
+    else
+        p(1)=p(1)*p(2);
+        p(2)=[];
+    end    
+    p=sort(p);
+end
+%Reformat if the column/row ratio is too large: we want a roughly
+%square design 
+while p(2)/p(1)>2.5
+    N=n+1;
+    [p,n]=numSubplots(N); %Recursive!
+end
+
+end
 
 % End.
