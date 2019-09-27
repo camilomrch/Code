@@ -13,10 +13,4 @@ Unless otherwise stated, all code was written exclusively by me.
 
 
 
-% <a name="logo"/>
-% <div align="center">
-% <a href="https://www.dynare.org/" target="_blank">
-% <img src="https://www.dynare.org/assets/images/logo/dlogo.svg" alt="Dynare Logo"></img>
-% </a>
-% </div>
 
