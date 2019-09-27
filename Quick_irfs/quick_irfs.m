@@ -46,7 +46,7 @@ fprintf( ['*****************************************************************\n',
 
 % List of shocks in drop-down menu
 list_shocks = {'QE shock (+)','Natural interest rate shock (-)','Credit shock (+)','Policy rate shock (+)'};
-% Prompt to a select shock.
+% Prompt to select shock.
 prompt_string={'Select shock of interest.'};
 list_size=[300,100];
 % Open drop-down menu.
@@ -158,8 +158,6 @@ fprintf('%s\n',names{kk,1})
 end
 fprintf('are expressed in annualised percent deviations from the steady state.\n')
 
-
-
     case {'Policy rate shock (-)'}
         
 clear; close all; clc;
@@ -269,6 +267,13 @@ hFig = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLine
    
  % Set position.
  set(gcf,'position',goodposition);
+ % Uncomment the following lines to save.
+ % Save Matlab figure.
+ % savefig('IRF_yourmodel');
+ % Save as .png file.
+ % print('IRF_yourmodel','-dpng','-r300');
+ % End figure.
+ 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DO NOT EDIT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [p,n]=numSubplots(n)
@@ -322,7 +327,7 @@ end
 %square design 
 while p(2)/p(1)>2.5
     N=n+1;
-    [p,n]=numSubplots(N); %Recursive!
+    [p,n]=numSubplots(N); % Recursive!
 end
 
 end
