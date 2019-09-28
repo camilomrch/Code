@@ -174,6 +174,14 @@ scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
 [row,column]=find(scaling_matrix=='4');
+% If no variable is annualized.
+try 
+[row,column]=find(scaling_matrix=='4');
+catch 
+    warning('All variables are quarterly.');
+    row=NaN;
+    column=NaN;
+end 
 names=cell(size(column,1),1);
 n=0;
 for jj=1:length(names)
@@ -186,7 +194,7 @@ fprintf('Notice that variables:\n')
 for kk=1:length(names)
 fprintf('%s\n',names{kk,1})
 end
-fprintf('are expressed in annualised percent deviations from the steady state.\n')
+fprintf('are annualised.\n')
 end  
 
  
