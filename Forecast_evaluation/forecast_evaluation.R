@@ -34,12 +34,19 @@ library(xtable)
 library(forecast)
 library(tidyverse)
 library(kableExtra)
-#######
+####################
 # Opening routine
-########
-rm(list=ls()) # clean global environment
-# Set worki
-setwd("~/Desktop/yourworkingdirectory")
+####################
+# Set working directory.
+setwd("~/Desktop/yourdirectory")
+# Or go to your preferred wd and type:
+# wd <- getwd()
+# setwd(wd)
+# Clear workspace.
+rm(list=ls())
+# Clear screen.
+cat("\014")  
+###################
 
 # EXAMPLE: quarterly change in GDP, with two horizon-ahead forecasts.
 # The evaluation proceeds as follows:

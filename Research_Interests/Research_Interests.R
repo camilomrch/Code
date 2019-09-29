@@ -32,7 +32,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
+####################
+# Opening routine
+####################
+# Set working directory.
+setwd("~/Desktop/yourdirectory")
+# Or go to your preferred wd and type:
+# wd <- getwd()
+# setwd(wd)
+# Clear workspace.
+rm(list=ls())
+# Clear screen.
+cat("\014")  
+###################
 
 Research_Interests < - function(fields_in_macroeconomics){
   

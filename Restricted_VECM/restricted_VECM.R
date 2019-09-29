@@ -31,11 +31,20 @@
 # SOFTWARE.
 
 
-# My opening routine
-########
-rm(list=ls()) # clean global environment
-setwd("yourworkingdirectory")
-########
+####################
+# Opening routine
+####################
+# Set working directory.
+setwd("~/Desktop/yourdirectory")
+# Or go to your preferred wd and type:
+# wd <- getwd()
+# setwd(wd)
+# Clear workspace.
+rm(list=ls())
+# Clear screen.
+cat("\014")  
+###################
+
 # Library
 library(forecast)
 library(ggplot2)

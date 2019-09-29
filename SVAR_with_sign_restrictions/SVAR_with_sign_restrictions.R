@@ -29,8 +29,6 @@
 # SOFTWARE. 
 
 
-
-
 # SVAR with sign restrictions
 # using package VARsignR
 # Stock and Watson data.
@@ -42,15 +40,25 @@
 # Install VARsignR
 # install.packages("VARsignR")
 
-########
+######################
 # Library
-library(VARsignR) # by Christian Danne
+library(VARsignR) 
 library(tidyverse)
-#######
+######################
 
+####################
 # Opening routine
-setwd("~/codes_github/SVAR_with_sign_restrictions")
-rm(list = ls())
+####################
+# Set working directory.
+setwd("~/Desktop/yourdirectory")
+# Or go to your preferred wd and type:
+# wd <- getwd()
+# setwd(wd)
+# Clear workspace.
+rm(list=ls())
+# Clear screen.
+cat("\014")  
+###################
 
 # Import data
 stockwatson <- read.delim("sw2001.txt", header=TRUE)

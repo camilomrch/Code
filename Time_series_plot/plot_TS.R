@@ -84,6 +84,9 @@ fredr_docs(endpoint = "category/related_tags", params = TRUE)
 ######################################################### START PLOTS ################################################################
 # Set working directory
 setwd("~/Desktop/yourdirectory")
+# Or go to your preferred wd and type
+# wd <- getwd()
+# setwd(wd)
 # Clear workspace
 rm(list=ls())
 # Clear screen
