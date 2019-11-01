@@ -7,5 +7,5 @@
   
   - A simple application of the code is: "How large a wage mark-up shock shall be to move inflation by **x** percent?".
   
-    - A more appealing question this shock can answer is: "For two shocks that generate the same response in GDP, **which of the two is the most inflationary?**".
+  - A more appealing question this shock can answer is: "For two shocks that generate the same response in GDP, **which of the two is the most inflationary?**".
 
