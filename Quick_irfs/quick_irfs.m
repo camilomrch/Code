@@ -60,7 +60,7 @@ end
 %% Define switch.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- switch Shockshow
+ switch Shockshow         % Switch start.
     case {'QE shock (+)'}
         
 clear; close all; clc;
@@ -75,9 +75,8 @@ scale = [4,1,4,1,4]; % Set variables you wish to annualise to 4.
 scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
-[row,column]=find(scaling_matrix=='4');
-% If no variable is annualized.
 try 
+% If no variable is annualized.
 [row,column]=find(scaling_matrix=='4');
 catch 
     warning('All variables are quarterly.');
@@ -97,7 +96,6 @@ for kk=1:length(names)
 fprintf('%s\n',names{kk,1})
 end
 fprintf('are expressed in annualised percent deviations from the steady state.\n')
-
 
     case {'Natural interest rate shock (-)'}
         
@@ -114,9 +112,8 @@ scale = [4,1,4,4]; % Set variables you wish to annualise to 4.
 scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
-[row,column]=find(scaling_matrix=='4');
-% If no variable is annualized.
 try 
+% If no variable is annualized.
 [row,column]=find(scaling_matrix=='4');
 catch 
     warning('All variables are quarterly.');
@@ -136,7 +133,6 @@ for kk=1:length(names)
 fprintf('%s\n',names{kk,1})
 end
 fprintf('are expressed in annualised percent deviations from the steady state.\n')
-
 
     case {'Credit shock (+)'}
         
@@ -152,9 +148,8 @@ scale = [4,1,4,1,4]; % Set variables you wish to annualise to 4.
 scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
-[row,column]=find(scaling_matrix=='4');
-% If no variable is annualized.
 try 
+% If no variable is annualized.
 [row,column]=find(scaling_matrix=='4');
 catch 
     warning('All variables are quarterly.');
@@ -174,6 +169,7 @@ for kk=1:length(names)
 fprintf('%s\n',names{kk,1})
 end
 fprintf('are expressed in annualised percent deviations from the steady state.\n')
+
 
     case {'Policy rate shock (-)'}
         
@@ -191,15 +187,14 @@ scale = [4,1,4,4]; % Set variables you wish to annualise to 4.
 scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
-[row,column]=find(scaling_matrix=='4');
-% If no variable is annualized.
 try 
+% If no variable is annualized.
 [row,column]=find(scaling_matrix=='4');
 catch 
     warning('All variables are quarterly.');
     row=NaN;
     column=NaN;
-end 
+end
 names=cell(size(column,1),1);
 n=0;
 for jj=1:length(names)
@@ -212,10 +207,9 @@ fprintf('Notice that variables:\n')
 for kk=1:length(names)
 fprintf('%s\n',names{kk,1})
 end
-fprintf('are annualised.\n')
-end  
+fprintf('are expressed in annualised percent deviations from the steady state.\n')
 
- 
+ end % Switch end.
  
 %% General plot options.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -357,5 +351,8 @@ while p(2)/p(1)>2.5
 end
 
 end
+
+
+
 
 % End.
