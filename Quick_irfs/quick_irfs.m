@@ -76,6 +76,14 @@ scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
 [row,column]=find(scaling_matrix=='4');
+% If no variable is annualized.
+try 
+[row,column]=find(scaling_matrix=='4');
+catch 
+    warning('All variables are quarterly.');
+    row=NaN;
+    column=NaN;
+end
 names=cell(size(column,1),1);
 n=0;
 for jj=1:length(names)
@@ -107,6 +115,14 @@ scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
 [row,column]=find(scaling_matrix=='4');
+% If no variable is annualized.
+try 
+[row,column]=find(scaling_matrix=='4');
+catch 
+    warning('All variables are quarterly.');
+    row=NaN;
+    column=NaN;
+end
 names=cell(size(column,1),1);
 n=0;
 for jj=1:length(names)
@@ -137,6 +153,14 @@ scaling_str = string(scale);
 var_label_str=string(var_label);
 scaling_matrix=[var_label_str';scaling_str];
 [row,column]=find(scaling_matrix=='4');
+% If no variable is annualized.
+try 
+[row,column]=find(scaling_matrix=='4');
+catch 
+    warning('All variables are quarterly.');
+    row=NaN;
+    column=NaN;
+end
 names=cell(size(column,1),1);
 n=0;
 for jj=1:length(names)
