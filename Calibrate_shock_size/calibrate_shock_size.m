@@ -31,7 +31,7 @@ eps_pos=strmatch(exo_name,M_.exo_names,'exact');
 % Desired deviation of the variable from steady-state at the time the shock hits.
 desired_value=1.000000;
 % Grid.
-SIGM_grid = 0.01:0.0001:0.05; % Standard deviation of shock.
+SIGM_grid = 0.01:0.0001:0.05; % Size of shock.
 % Pre-allocate.
 response_size=zeros(length(SIGM_grid),1);
 % Storage matrix.
