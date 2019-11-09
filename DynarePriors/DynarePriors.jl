@@ -47,7 +47,7 @@ using StatsPlots
 # https://github.com/JuliaStats/Distributions.jl/tree/master/src/univariate/continuous
 #################################################
 
-# EXAMPLES
+# EXAMPLES.
 
 #=
 Normal Distribution
@@ -89,10 +89,12 @@ Uniform(a, b)
 Uniform distribution with location a and scale (a-b), where a and b are the lower and upper bound, respectively.
 @distr_support Uniform a b
 =#
+
 unif=Dict("θ"=>Uniform(1,8),"η"=>Uniform(2,6),"γ"=>Uniform(5.5,7));
 
 
 function DynarePriors(dis)
+ 
   #=
   dis: dictionary of parameter values
   assigned to their respective distributions.
@@ -105,6 +107,7 @@ function DynarePriors(dis)
   # Set fill option.
   set_fillrange=0;
   set_fillalpha=0.2;
+ 
   # Set colours (from http://latexcolor.com/)
   # Max 10 distributions in a single plot
   blue_de_france=RGB(0.19,0.55,0.91)
@@ -117,6 +120,7 @@ function DynarePriors(dis)
   jazzberry_jam=RGB(0.65,0.04,0.37)
   bittersweet=RGB(1.0,0.44,0.37)
   sepia=RGB(0.44,0.26,0.08)
+ 
   # Concatenate.
   colors_array=[
    blue_de_france
@@ -136,20 +140,16 @@ dis_keys=collect(keys(dis));
 # Get corresponding distributions.
 dis_values=collect(values(dis));
 
-# Define distribution symbol
+# Define distribution letter.
 if typeof(dis_values[1]) <: Normal
 sym="𝓝"
-end
-if typeof(dis_values[1]) <: Gamma
+elseif typeof(dis_values[1]) <: Gamma
 sym="𝚪"
-end
-if typeof(dis_values[1]) <: Beta
+elseif typeof(dis_values[1]) <: Beta
 sym="𝚩"
-end
-if typeof(dis_values[1]) <: InverseGamma
+elseif typeof(dis_values[1]) <: InverseGamma
 sym="𝑰𝐆"
-end
-if typeof(dis_values[1]) <: Uniform
+elseif typeof(dis_values[1]) <: Uniform
 sym="𝐔"
 end
 # Number of distributions in the vector.
@@ -188,3 +188,4 @@ DynarePriors(gam)
 DynarePriors(beta)
 DynarePriors(inv_gamma)
 DynarePriors(unif)
+# End.
