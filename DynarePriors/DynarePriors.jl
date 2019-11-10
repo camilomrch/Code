@@ -35,7 +35,7 @@ import Pkg; Pkg.add("Distributions")
 import Pkg; Pkg.add("Plots")
 import Pkg; Pkg.add("StatsPlots")
 import Pkg; Pkg.add("Plotly")
-import Pkg; Pkg.add("PGFPlots")
+# import Pkg; Pkg.add("PGFPlots")
 # import Pkg; Pkg.add("LaTexStrings")
 #####################################
 using Distributions
@@ -94,7 +94,7 @@ unif=Dict("θ"=>Uniform(1,8),"η"=>Uniform(2,6),"γ"=>Uniform(5.5,7));
 
 
 function DynarePriors(dis)
- 
+
   #=
   dis: dictionary of parameter values
   assigned to their respective distributions.
@@ -107,7 +107,7 @@ function DynarePriors(dis)
   # Set fill option.
   set_fillrange=0;
   set_fillalpha=0.2;
- 
+
   # Set colours (from http://latexcolor.com/)
   # Max 10 distributions in a single plot
   blue_de_france=RGB(0.19,0.55,0.91)
@@ -120,7 +120,7 @@ function DynarePriors(dis)
   jazzberry_jam=RGB(0.65,0.04,0.37)
   bittersweet=RGB(1.0,0.44,0.37)
   sepia=RGB(0.44,0.26,0.08)
- 
+
   # Concatenate.
   colors_array=[
    blue_de_france
@@ -176,7 +176,8 @@ end
     ,fill=(set_fillrange,set_fillalpha,colors_array[kter])
     ,labels="$pr_name~$sym$pr"
     ,xlabel="Parameter value"
-    ,ylabel="Density")
+    ,ylabel="Density"
+    ,dpi=300)
     end
 # Return the plot.
 return plot_d
@@ -185,7 +186,7 @@ end
 # Plot.
 DynarePriors(norm)
 DynarePriors(gam)
-DynarePriors(beta)
-DynarePriors(inv_gamma)
+DynarePriors(bet)
+DynarePriors(inv_gam)
 DynarePriors(unif)
 # End.
