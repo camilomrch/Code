@@ -214,7 +214,7 @@ xgap=y-y_flex;
 qe=RHO_QE*qe(-1)+eps_QE;
 
 [name='Technology Shock']
-a=RHO_QE*a(-1)+eps_A;
+a=RHO_A*a(-1)+eps_A;
 
 [name='Financial conditions shock']
 thet=RHO_THET*thet(-1)+eps_thet;
