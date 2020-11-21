@@ -42,10 +42,10 @@ cat("\014")
 Research_Interests < - function(fields_in_macroeconomics){
   
   Research_Interests < -c(
-    "Macroeconometrics",
-    "Monetary Economics",
+    "Macroeconomics",
     "International Finance",
-    "Computational Macroeconomics"
+    "Macroeconometrics",
+    "Computational Methods"
   )
   
   macroproblems <- fields_in_macroeconomics  %>%
