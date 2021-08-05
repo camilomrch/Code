@@ -258,8 +258,7 @@ end
    % Assign.
    FigShape = {nsubplots(1),nsubplots(2)};
    % Prepare last subplot to show legend.
-   lastplot = FigShape{1}*FigShape{2};
-
+   lastplot = nvarplot;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Begin figure.
 hFig = figure('DefaultTextFontName',font,'DefaultAxesFontName',font,'DefaultLineLinewidth',2,'DefaultTextFontSize',12,'Name',shock_name{:});

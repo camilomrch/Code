@@ -44,7 +44,6 @@ Research_Interests < - function(fields_in_macroeconomics){
   Research_Interests < -c(
     "Macroeconomics",
     "International Finance",
-    "Macroeconometrics",
     "Computational Methods"
   )
   
