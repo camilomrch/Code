@@ -44,7 +44,7 @@ Research_Interests < - function(fields_in_macroeconomics){
   Research_Interests < -c(
     "Macroeconomics",
     "International Finance",
-    "Computational Methods"
+    "Numerical Methods"
   )
   
   macroproblems <- fields_in_macroeconomics  %>%
